@@ -75,7 +75,7 @@ else
     STDOUT.reopen '/dev/null', 'a'
     STDERR.reopen '/dev/null', 'a'
   else
-    Process.daemon
+    Process.daemon(true)
   end
 end
 
