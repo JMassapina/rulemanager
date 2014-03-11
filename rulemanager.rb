@@ -31,8 +31,8 @@ OPTIONS.logfile = '/var/log/rulemanager.log'
 
 OptionParser.new do |opts|
   opts.banner = 'Usage: rulemanager.rb [options]'
-  opts.on('--conf', String, 'Config file') do |c|
-    OPTIONS.config_file = c
+  opts.on('--conf configfile', String, 'Config file') do |configfile|
+    OPTIONS.config_file = configfile
   end
   opts.on('-d', '--debug', "Debug mode - don't daemonize") do |d|
     OPTIONS.debug_mode = true
