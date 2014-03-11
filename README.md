@@ -1,8 +1,8 @@
-# rulemanager
+# rulemanager.rb
 
 ## What is this thing?
 
-A tool to populate an object-group on all your Cisco ASAs, so that it contains all of your Amazon EC2 instances. It works over multiple AWS accounts and regions, and synchronizes multiple Cisco devices.
+A Ruby-based tool to populate an object-group on all your Cisco ASAs, so that it contains all of your Amazon EC2 instances. It works over multiple AWS accounts and regions, and synchronizes multiple Cisco devices.
 
 ## How does it work?
 
