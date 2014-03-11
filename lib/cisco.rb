@@ -40,8 +40,8 @@ module RuleManager
     end
 
     def get_objects(asa)
-      safe_execute do
-        output = asa.run do |x|
+      output = safe_execute do
+        asa.run do |x|
           x.enable(CONFIG['device_enable'])
           x.cmd('terminal pager 0')
           x.cmd('show run object network')
@@ -58,8 +58,8 @@ module RuleManager
     end
 
     def get_object_group(asa, object_group)
-      safe_execute do
-        output = asa.run do |x|
+      output = safe_execute do
+        asa.run do |x|
           LOGGER.debug('enable')
           x.enable(CONFIG['device_enable'])
           x.cmd('terminal pager 0')
@@ -79,8 +79,8 @@ module RuleManager
     end
 
     def get_names(asa)
-      safe_execute do
-        output = asa.run do |x|
+      output = safe_execute do
+        asa.run do |x|
           x.enable(CONFIG['device_enable'])
           x.cmd('terminal pager 0')
           x.cmd('show run names')
