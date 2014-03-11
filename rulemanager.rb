@@ -37,8 +37,8 @@ OptionParser.new do |opts|
   opts.on('-d', '--debug', "Debug mode - don't daemonize") do |d|
     OPTIONS.debug_mode = true
   end
-  opts.on('-p', '--pidfile', 'Pidfile') do |p|
-    OPTIONS.pidfile = p
+  opts.on('-p', '--pidfile pidfile', 'Pidfile') do |pidfile|
+    OPTIONS.pidfile = pidfile
   end
 end.parse!
 
