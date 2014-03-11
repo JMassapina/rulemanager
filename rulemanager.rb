@@ -45,6 +45,9 @@ OptionParser.new do |opts|
   opts.on('-p', '--piddir piddir', 'Pid directory') do |piddir|
     OPTIONS.piddir = piddir
   end
+  opts.on('-p', '--logfile logfile', 'Logfile') do |logfile|
+    OPTIONS.logfile = logfile
+  end
 end.parse!
 
 #noinspection RubyResolve
