@@ -36,19 +36,21 @@ Don't forget to allow SSH connections through your access-lists also.
 ### Amazon
 Create an IAM user in AWS with an access policy similar to the following:
 
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
     {
-      "Version": "2012-10-17",
-      "Statement": [
-        {
-          "Action": [
-            "ec2:Describe*",
-            "sqs:*"
-          ],
-          "Effect": "Allow",
-          "Resource": "*"
-        }
-      ]
+      "Action": [
+        "ec2:Describe*",
+        "sqs:*"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
     }
+  ]
+}
+```
 
 You may wish to create two separate users; one to be used by rulemanager (requiring SQS ListQueues/RecieveMessage and EC2 describe privileges), and another to be used for submitting 'host up' notifications to the queue (requiring SQS:*).
 
