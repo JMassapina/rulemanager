@@ -16,7 +16,6 @@ module RuleManager
         slices += 1
         LOGGER.debug('command slice %u of %u sent' % [ slices, (confarray.count / 50.0).ceil ])
         end
-      debug
     end
 
     def resolve_objects(source, asa)
