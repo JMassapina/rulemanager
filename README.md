@@ -2,7 +2,7 @@
 
 ## What is this thing?
 
-A Ruby-based tool to populate an object-group on all your Cisco ASAs, so that it contains all of your Amazon EC2 instances. It works over multiple AWS accounts and regions, and synchronizes multiple Cisco devices.
+A Ruby-based daemon to populate an object-group on all your Cisco ASAs, so that it contains all of your Amazon EC2 instances. It works over multiple AWS accounts and regions, and synchronizes multiple Cisco devices. It also includes an SQS consumer to allow new instances to be added instantly.
 
 ## How does it work?
 
