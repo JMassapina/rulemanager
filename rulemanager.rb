@@ -20,7 +20,7 @@ require 'socket'
 require 'yaml'
 require 'pp'
 
-require File.expand_path(File.dirname(__FILE__) + '/*.rb')
+Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file| require File.expand_path(file) }
 
 OPTIONS = OpenStruct.new
 OPTIONS.config_file = '/etc/rulemanager.conf.yml'
