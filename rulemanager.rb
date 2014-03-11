@@ -105,10 +105,13 @@ begin
 
 rescue Lockfile::MaxTriesLockError
   LOGGER.warn('could not acquire lock (%s)' % CONFIG['lock_file'])
+  exit 1
 rescue Lockfile::StolenLockError
   LOGGER.fatal('lock was stolen, aborting (%s)' % CONFIG['lock_file'])
+  exit 1
 rescue Exception => msg
   puts msg
+  exit 1
 ensure
   exit unless lockfile.locked?
   LOGGER.debug('releasing lock')
