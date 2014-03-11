@@ -22,6 +22,7 @@ require 'pp'
 
 #noinspection RubyResolve
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file| require File.expand_path(file) }
+include RuleManager
 
 OPTIONS = OpenStruct.new
 OPTIONS.config_file = '/etc/rulemanager.conf.yml'
