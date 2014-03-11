@@ -81,10 +81,10 @@ mac = requests.get(url+'network/interfaces/macs/').text
 owner = requests.get(url+'network/interfaces/macs/' + mac + '/owner-id').text
 
 conn = boto.sqs.connect_to_region('eu-west-1')
-q = conn.get_queue(queue_name='autoscaling', owner_acct_id='768275701865')
+q = conn.get_queue(queue_name='autoscaling', owner_acct_id='YOUR_AWS_ACCOUNT_NUMBER')
 m = Message()
 m.set_body(json.dumps({ "instance_id": instance_id, "hostname": public_hostname, "state": 'up', "region": region_full, "owner": owner }))
 status = q.write(m)
 ```
 
-This script is also available in the conf/ directory of this repository.
+This script is also available in the conf/ directory of this repository. Be sure to replace your AWS owner account ID, or if you're only working in a single AWS account, you can remove that parameter.
