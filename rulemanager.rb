@@ -41,7 +41,7 @@ OptionParser.new do |opts|
     OPTIONS.pidfile = pidfile
   end
   opts.on('-p', '--piddir piddir', 'Pid directory') do |piddir|
-    OPTIONS.pidfile = piddir
+    OPTIONS.piddir = piddir
   end
 end.parse!
 
