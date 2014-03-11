@@ -1,0 +1,59 @@
+# ---- CISCO
+
+# List of Cisco devices to manage rules for (hostnames or IPs)
+devices:
+    - dc1.mindcandy.com
+    - dc2.mindcandy.com
+    - lon-net-fw01.mindcandy.com
+
+# Cisco device credentials (used for all devices)
+device_user: username
+device_password: password
+device_enable: enable-password
+
+
+# The name of the object-group to manage
+object_group: dynamic-aws-hosts
+
+# Maximum connection errors in one run, before giving up
+max_attempts: 25
+
+# ---- AWS
+
+# File containing AWS account details, in INI format
+accounts_file: /etc/mindcandy/puppet_aws.conf
+
+# Map of account IDs to entries in credential file
+owner_map:
+    768275701865: awsproduction@mindcandy.com
+    365000528341: awsstaging@mindcandy.com
+    460913416432: awsintegration@mindcandy.com
+    420537915335: mcawsdevelopment@mindcandy.com
+
+# URL of the SQS queue from which to consume messages
+sqs_url: https://sqs.eu-west-1.amazonaws.com/00000000/sample
+
+# Credentials for an IAM account with permission to access the SQS queue
+sqs_creds:
+    aws_access_key_id:      MYLOVELYKEYID
+    aws_secret_access_key:  VERYSECRETSUPERSECRET
+
+sqs_region: eu-west-1
+
+# ---- MISC
+
+# Run a full synchronisation of firewall rules, removing rules for hosts that no longer exist. This should be done at least once a day.
+full_sync_enabled: false
+full_sync_every: 3600
+
+# Cache file location - will be created
+cache_file: /opt/script/instances.cache
+
+# Lock file location - will be created
+lock_file: /var/lock/dev-cisco-aws-update.lock
+
+# URL to post a confirmation to HipChat
+hipchat_url: https://api.hipchat.com/v1/rooms/message?format=json&auth_token=mylovelyauthtoken
+
+
+

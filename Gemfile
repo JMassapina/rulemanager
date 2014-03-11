@@ -1,0 +1,13 @@
+source 'https://rubygems.org'
+
+gem 'lockfile'
+gem 'cisco'
+gem 'aws-sdk'
+gem 'addressable'
+gem 'hashery'
+gem 'logger'
+gem 'logger-colors'
+gem 'eventmachine'
+gem 'pidfile'
+gem 'json'
+gem 'daemons'
