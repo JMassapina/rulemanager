@@ -90,18 +90,20 @@ begin
     LOGGER.info("running full sync every #{CONFIG['full_sync_every']} seconds")
   end
 
-  t = Thread.new { RuleManager.queue_poller }
-  t.abort_on_exception = true
-
-  if CONFIG['full_sync_enabled'] and CONFIG['initial_sync']
-    RuleManager.full_sync
+  if CONFIG['sqs_enabled']
+    t = Thread.new { RuleManager.queue_poller }
+    t.abort_on_exception = true
   end
 
-  EventMachine.run {
-    if CONFIG['full_sync_enabled']
-      EventMachine::PeriodicTimer.new(CONFIG['full_sync_every'].to_i) { RuleManager.full_sync }
+  if CONFIG['full_sync_enabled']
+    if CONFIG['initial_sync']
+      RuleManager.full_sync
     end
-  }
+
+    EventMachine.run {
+        EventMachine::PeriodicTimer.new(CONFIG['full_sync_every'].to_i) { RuleManager.full_sync }
+    }
+  end
 
 rescue Lockfile::MaxTriesLockError
   LOGGER.warn('could not acquire lock (%s)' % CONFIG['lock_file'])

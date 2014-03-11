@@ -31,6 +31,7 @@ owner_map:
     420537915335: mcawsdevelopment@mindcandy.com
 
 # URL of the SQS queue from which to consume messages
+sqs_enabled: false
 sqs_url: https://sqs.eu-west-1.amazonaws.com/00000000/sample
 
 # Credentials for an IAM account with permission to access the SQS queue
@@ -45,6 +46,9 @@ sqs_region: eu-west-1
 # Run a full synchronisation of firewall rules, removing rules for hosts that no longer exist. This should be done at least once a day.
 full_sync_enabled: false
 full_sync_every: 3600
+
+# Run a full sync when the script starts?
+initial_sync: true
 
 # Cache file location - will be created
 cache_file: /opt/script/instances.cache
