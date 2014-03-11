@@ -40,7 +40,7 @@ OptionParser.new do |opts|
   opts.on('-p', '--pidfile', 'Pidfile') do |p|
     OPTIONS.pidfile = p
   end
-end
+end.parse!
 
 CONFIG = YAML.load(File.read(OPTIONS.config_file))
 
