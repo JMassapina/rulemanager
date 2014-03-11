@@ -20,6 +20,7 @@ require 'socket'
 require 'yaml'
 require 'pp'
 
+#noinspection RubyResolve
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file| require File.expand_path(file) }
 
 OPTIONS = OpenStruct.new
@@ -45,6 +46,7 @@ OptionParser.new do |opts|
   end
 end.parse!
 
+#noinspection RubyResolve
 CONFIG = YAML.load(File.read(OPTIONS.config_file))
 
 # ----- MAIN -----
@@ -86,12 +88,12 @@ begin
     LOGGER.info("running full sync every #{CONFIG['full_sync_every']} seconds")
   end
 
-  t = Thread.new { queue_poller }
+  t = Thread.new { RuleManager.queue_poller }
   t.abort_on_exception = true
 
   EventMachine.run {
     if CONFIG['full_sync_enabled']
-      EventMachine::PeriodicTimer.new(CONFIG['full_sync_every'].to_i) { full_sync }
+      EventMachine::PeriodicTimer.new(CONFIG['full_sync_every'].to_i) { RuleManager.full_sync }
     end
   }
 

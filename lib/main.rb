@@ -2,6 +2,7 @@ module RuleManager
   def read_cache
     LOGGER.debug('reading cache')
     begin
+      #noinspection RubyResolve
       cache_hosts = Marshal.load(File.read(CONFIG['cache_file']))
       LOGGER.info('cache contains %u entries' % cache_hosts.count)
     rescue
@@ -84,6 +85,7 @@ module RuleManager
 
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
+    #noinspection RubyResolve
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     http.start do |this|
       response = this.request_post(uri.request_uri, query.query)
