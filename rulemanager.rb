@@ -55,13 +55,13 @@ CONFIG = YAML.load(File.read(OPTIONS.config_file))
 logger = Logger.new(STDOUT)
 logger.level = (STDOUT.tty? ? Logger::DEBUG : Logger::ERROR)
 logger.info('rulemanager has started')
-logger.info('detaching from tty, process %u' % Process.pid)
 
 # Detach and daemonize
 
 if OPTIONS.debug_mode
   LOGGER = logger
 else
+  logger.info('detaching from tty, process %u' % Process.pid)
   LOGGER = Logger.new(OPTIONS.logfile)
   LOGGER.level = (STDOUT.tty? ? Logger::DEBUG : Logger::INFO)
 
