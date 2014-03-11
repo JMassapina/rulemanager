@@ -70,7 +70,7 @@ else
     exit if fork
     Process.setsid
     exit if fork
-    Dir.chdir '/'
+    Dir.chdir '/tmp'
     STDIN.reopen '/dev/null'
     STDOUT.reopen '/dev/null', 'a'
     STDERR.reopen '/dev/null', 'a'
