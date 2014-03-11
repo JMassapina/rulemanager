@@ -20,7 +20,6 @@ require 'socket'
 require 'yaml'
 require 'pp'
 
-#noinspection RubyResolve
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file| require File.expand_path(file) }
 include RuleManager
 
@@ -50,7 +49,6 @@ OptionParser.new do |opts|
   end
 end.parse!
 
-#noinspection RubyResolve
 CONFIG = YAML.load(File.read(OPTIONS.config_file))
 
 # ----- MAIN -----

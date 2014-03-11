@@ -15,7 +15,7 @@ module RuleManager
         end
         slices += 1
         LOGGER.debug('command slice %u of %u sent' % [ slices, (confarray.count / 50.0).ceil ])
-        end
+      end
     end
 
     def resolve_objects(source, asa)
@@ -107,8 +107,8 @@ module RuleManager
     end
 
     def safe_execute
-     attempts_left = CONFIG['max_attempts']
-     begin
+      attempts_left = CONFIG['max_attempts']
+      begin
         yield
       rescue Net::SSH::Disconnect => e
         attempts_left -= 1
