@@ -93,6 +93,10 @@ begin
   t = Thread.new { RuleManager.queue_poller }
   t.abort_on_exception = true
 
+  if CONFIG['full_sync_enabled'] and CONFIG['initial_sync']
+    RuleManager.full_sync
+  end
+
   EventMachine.run {
     if CONFIG['full_sync_enabled']
       EventMachine::PeriodicTimer.new(CONFIG['full_sync_every'].to_i) { RuleManager.full_sync }
