@@ -40,6 +40,9 @@ OptionParser.new do |opts|
   opts.on('-p', '--pidfile pidfile', 'Pidfile') do |pidfile|
     OPTIONS.pidfile = pidfile
   end
+  opts.on('-p', '--piddir piddir', 'Pid directory') do |piddir|
+    OPTIONS.pidfile = piddir
+  end
 end.parse!
 
 CONFIG = YAML.load(File.read(OPTIONS.config_file))
