@@ -2,9 +2,9 @@
 
 # List of Cisco devices to manage rules for (hostnames or IPs)
 devices:
-    - dc1.mindcandy.com
-    - dc2.mindcandy.com
-    - lon-net-fw01.mindcandy.com
+    - myfirewall.mycompany.com
+    - 192.168.0.4
+    - myfirewall2.mycompany.com
 
 # Cisco device credentials (used for all devices)
 device_user: username
@@ -25,10 +25,9 @@ accounts_file: /etc/mindcandy/puppet_aws.conf
 
 # Map of account IDs to entries in credential file
 owner_map:
-    768275701865: awsproduction@mindcandy.com
-    365000528341: awsstaging@mindcandy.com
-    460913416432: awsintegration@mindcandy.com
-    420537915335: mcawsdevelopment@mindcandy.com
+    985728593749: myfirstaccount@whatever.com
+    967385843726: anotheraccount@whatever.com
+    683265736355: yetanotheraccount@whatever.com
 
 # URL of the SQS queue from which to consume messages
 sqs_enabled: false
