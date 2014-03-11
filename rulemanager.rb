@@ -64,7 +64,7 @@ if OPTIONS.debug_mode
 else
   logger.info('detaching from tty, process %u' % Process.pid)
   LOGGER = Logger.new(OPTIONS.logfile)
-  LOGGER.level = (STDOUT.tty? ? Logger::DEBUG : Logger::INFO)
+  LOGGER.level = Logger::DEBUG
 
   if RUBY_VERSION < '1.9'
     exit if fork
