@@ -57,7 +57,9 @@ cache_file: /opt/script/instances.cache
 lock_file: /var/lock/dev-cisco-aws-update.lock
 
 # URL to post a confirmation to HipChat
+hipchat_enabled: false
 hipchat_url: https://api.hipchat.com/v1/rooms/message?format=json&auth_token=mylovelyauthtoken
+hipchat_room_id: 12345
 
 
 

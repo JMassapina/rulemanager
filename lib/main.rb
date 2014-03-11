@@ -70,8 +70,8 @@ module RuleManager
 
   def hipchat_notify_success(message)
     options = {
-        :room_id => 33923,
-        :from => 'AWS Sync',
+        :room_id => CONFIG['hipchat_room_id'],
+        :from => 'rulemanager',
         :message_format => 'html',
         :color => 'green',
         :message => message
@@ -85,7 +85,7 @@ module RuleManager
 
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
-    #noinspection RubyResolve
+
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     http.start do |this|
       response = this.request_post(uri.request_uri, query.query)
@@ -182,7 +182,9 @@ module RuleManager
         when 'up'
           LOGGER.debug(msg_h)
           update_single_node(msg_h['instance_id'], msg_h['region'], msg_h['owner'])
-          hipchat_notify_success('Added %s: [%s] (by %s)' % [ msg_h['instance_id'], msg_h['hostname'], Socket.gethostname ])
+          if CONFIG['hipchat_enabled']
+            hipchat_notify_success('Added %s: [%s] (by %s)' % [ msg_h['instance_id'], msg_h['hostname'], Socket.gethostname ])
+          end
         else
 
         end
