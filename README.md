@@ -57,32 +57,32 @@ Then, create an SQS queue. This will be used to notify rulemanager of newly spun
 ### Clients
 You don't actually need to do anything on the client; you could choose to rely on rulemanager's full-sync capability every few minutes, in order to bring your firewalls up-to-date with new machines. If your new machines need immediate access to remote resources, then you're going to want to make use of the SQS functionality in order to have the firewalls updated as soon as a new node is brought to life. The simplest way to do this, is to set-up your instance userdata in order to install and run the following script, as part of your bootstrap:
 
-    ````python
-    #!/usr/bin/env python
-    import requests
-    import boto
-    import json
-    import boto.ec2
-    import boto.s3
-    import boto.sqs
-    import time
-    import os
-    from boto.sqs.message import Message
+```python
+#!/usr/bin/env python
+import requests
+import boto
+import json
+import boto.ec2
+import boto.s3
+import boto.sqs
+import time
+import os
+from boto.sqs.message import Message
 
-    url = 'http://169.254.169.254/latest/meta-data/'
+url = 'http://169.254.169.254/latest/meta-data/'
 
-    region_name = requests.get(url+'placement/availability-zone').text[:-1]
-    region_full = requests.get(url+'placement/availability-zone').text
-    instance_id = requests.get(url+'instance-id').text
-    public_hostname = requests.get(url+'public-hostname').text
-    mac = requests.get(url+'network/interfaces/macs/').text
-    owner = requests.get(url+'network/interfaces/macs/' + mac + '/owner-id').text
+region_name = requests.get(url+'placement/availability-zone').text[:-1]
+region_full = requests.get(url+'placement/availability-zone').text
+instance_id = requests.get(url+'instance-id').text
+public_hostname = requests.get(url+'public-hostname').text
+mac = requests.get(url+'network/interfaces/macs/').text
+owner = requests.get(url+'network/interfaces/macs/' + mac + '/owner-id').text
 
-    conn = boto.sqs.connect_to_region('eu-west-1')
-    q = conn.get_queue(queue_name='autoscaling', owner_acct_id='768275701865')
-    m = Message()
-    m.set_body(json.dumps({ "instance_id": instance_id, "hostname": public_hostname, "state": 'up', "region": region_full, "owner": owner }))
-    status = q.write(m)
-    ````
+conn = boto.sqs.connect_to_region('eu-west-1')
+q = conn.get_queue(queue_name='autoscaling', owner_acct_id='768275701865')
+m = Message()
+m.set_body(json.dumps({ "instance_id": instance_id, "hostname": public_hostname, "state": 'up', "region": region_full, "owner": owner }))
+status = q.write(m)
+```
 
 This script is also available in the conf/ directory of this repository.
