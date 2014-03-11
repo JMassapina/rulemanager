@@ -53,7 +53,7 @@ logger.info('detaching from tty, process %u' % Process.pid)
 
 # Detach and daemonize
 
-if DEBUG_MODE
+if OPTIONS.debug_mode
   LOGGER = logger
 else
   LOGGER = Logger.new(OPTIONS.logfile)
