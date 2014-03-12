@@ -57,7 +57,7 @@ You may wish to create two separate users; one to be used by rulemanager (requir
 Then, create an SQS queue. This will be used to notify rulemanager of newly spun-up hosts. Copy the name of the queue into the config file.
 
 ### Clients
-You don't actually need to do anything on the client; you could choose to rely on rulemanager's full-sync capability every few minutes, in order to bring your firewalls up-to-date with new machines. If your new machines need immediate access to remote resources, then you're going to want to make use of the SQS functionality in order to have the firewalls updated as soon as a new node is brought to life. The simplest way to do this, is to set-up your instance userdata in order to install and run the following script, as part of your bootstrap:
+You don't actually need to do anything on the client; you could choose to rely on rulemanager's full-sync capability every few minutes, in order to bring your firewalls up-to-date with new machines. If your new machines need immediate access to remote resources, then you're going to want to make use of the SQS functionality in order to have the firewalls updated as soon as a new node is brought to life. The simplest way to do this, is to have your instance userdata take care of it. One way is to store a script on S3, and have the userdata retrieve and run it on first boot. Here's an exomple python script:
 
 ```python
 #!/usr/bin/env python
@@ -87,4 +87,13 @@ m.set_body(json.dumps({ "instance_id": instance_id, "hostname": public_hostname,
 status = q.write(m)
 ```
 
-This script is also available in the conf/ directory of this repository. Be sure to replace your AWS owner account ID, or if you're only working in a single AWS account, you can remove that parameter.
+This script is also available in the conf/ directory of this repository. Be sure to replace your AWS owner account ID, or if you're only working in a single AWS account, you can remove that parameter. Essentially, you need to add a message to your queue with the following JSON:
+
+```json
+{
+    "instance_id": instance_id,
+    "hostname": hostname,
+    "state": "up",
+    "region": region_including_availability_zone,
+    "owner": this_instance_owner_aws_account_number
+}
