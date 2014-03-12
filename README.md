@@ -8,7 +8,10 @@ A Ruby-based daemon to populate an object-group on all your Cisco ASAs, so that 
 
 This tool accepts a configuration file containing AWS access keys, and generates a list of IP addresses for all accessible EC2 hosts in all given regions. It then connects to any number of Cisco ASA devices, and synchronizes the list of IP addresses as members of a dyanmic object-group, which can be used with access-lists to allow access from EC2 hosts into a corporate network.
 
-It also includes an SQS consumer, which will subscribe to any given SQS queue, and
+It also includes an SQS consumer, which will subscribe to any given SQS queue, and can then act immediately as new instances are brought up.
+
+## Who developed this?
+This tool was originally developed by James Denness (scarybot) and the network operations team at Mind Candy.
 
 ## Configuration
 
