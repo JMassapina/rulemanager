@@ -51,10 +51,10 @@ full_sync_every: 3600
 initial_sync: true
 
 # Cache file location - will be created
-cache_file: /opt/script/instances.cache
+cache_file: /var/cache/rulemanager.cache
 
 # Lock file location - will be created
-lock_file: /var/lock/dev-cisco-aws-update.lock
+lock_file: /var/lock/rulemanager.lock
 
 # URL to post a confirmation to HipChat
 hipchat_enabled: false
