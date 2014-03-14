@@ -21,7 +21,7 @@ max_attempts: 25
 # ---- AWS
 
 # File containing AWS account details, in INI format
-accounts_file: /etc/mindcandy/puppet_aws.conf
+accounts_file: /etc/aws_accounts.conf
 
 # Map of account IDs to entries in credential file. This is only used if you've enabled SQS.
 # This relates [titles] of credentials in the credential file to their AWS account IDs, which you can find in your Amazon billing info.
