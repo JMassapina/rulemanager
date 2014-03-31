@@ -24,7 +24,7 @@ Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file| require File.expand_path(
 include RuleManager
 
 OPTIONS = OpenStruct.new
-  OPTIONS.config_file = '/etc/rulemanager.conf.yml'
+OPTIONS.config_file = '/etc/rulemanager.conf.yml'
 OPTIONS.debug_mode = false
 OPTIONS.piddir = '/var/run'
 OPTIONS.pidfile = 'rulemanager.pid'
